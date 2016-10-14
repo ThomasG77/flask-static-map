@@ -1,0 +1,83 @@
+---
+swagger: "2.0"
+info:
+  description: "Create a map on the top of OpenStreetMap tiles"
+  version: "1.0.0"
+  title: "Static Map API"
+host: "localhost"
+basePath: "/v1"
+schemes:
+- "https"
+produces:
+- "application/json"
+paths:
+  /getStaticMap:
+    get:
+      tags:
+      - "staticmap"
+      summary: "get Static Map"
+      description: "The Products endpoint returns information about the *Uber* products\n\
+        offered at a given location. The response includes the display name\nand other\
+        \ details about each product, and lists the products in the\nproper display\
+        \ order.\n"
+      operationId: "controllers.staticmap_controller.get_static_map_get"
+      produces:
+      - "image/png"
+      - "image/jpeg"
+      parameters:
+      - name: "latitude"
+        in: "query"
+        description: "Latitude of point"
+        required: true
+        type: "number"
+        format: "double"
+      - name: "longitude"
+        in: "query"
+        description: "Longitude of point."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "height"
+        in: "query"
+        description: "Height."
+        required: true
+        type: "integer"
+        default: 200
+      - name: "width"
+        in: "query"
+        description: "Width."
+        required: true
+        type: "integer"
+        default: 200
+      - name: "zoom"
+        in: "query"
+        description: "Zoom."
+        required: true
+        type: "integer"
+        default: 5
+      - name: "urltemplate"
+        in: "query"
+        required: true
+        type: "string"
+        default: "http://a.tile.osm.org/{z}/{x}/{y}.png"
+        format: "string"
+      responses:
+        200:
+          description: "An image"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-tags:
+      - tag: "staticmap"
+definitions:
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+      fields:
+        type: "string"
