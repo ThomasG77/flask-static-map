@@ -9,7 +9,7 @@ from flask import send_file
 def get_static_map_get(latitude, longitude, height, width, zoom, urltemplate):
     m = StaticMap(width, height, url_template=urltemplate)
 
-    image = m.render(zoom=5, center=(longitude, latitude))
+    image = m.render(zoom=zoom, center=(longitude, latitude))
 
     img_io = BytesIO()
     image.save(img_io, 'png', quality=90)
