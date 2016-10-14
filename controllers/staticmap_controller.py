@@ -1,5 +1,4 @@
 # coding: utf-8
-
 from io import BytesIO
 
 from staticmap import StaticMap
