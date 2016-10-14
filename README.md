@@ -10,9 +10,15 @@ This example uses the [Connexion](https://github.com/zalando/connexion) library 
 To run the server, please execute the following:
 
 ```
+
+virtualenv venv --python=/usr/bin/python3.5
+source venv/bin/activate
 sudo pip3 install -U connexion # install Connexion from PyPI
+# You need to install staticmap
+pip install https://github.com/komoot/staticmap/archive/master.zip
 python3 app.py
 ```
+
 
 and open your browser to here:
 
